@@ -1,19 +1,17 @@
-import argparse
-parser = argparse.ArgumentParser(description='hexlet project lvl2')
-parser.add_argument("-h","--help", action="store_true",
-                                   help="help information",)
-answer = "
-usage: gendiff [-h] first_file second_file
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description='Generate diff')
+    parser.add_argument("first_file")
+    parser.add_argument("second_file")
+    args = parser.parse_args()
 
-Generate diff
 
-positional arguments:
-  first_file
-  second_file
+if __name__ == "__main__":
+    main()
 
-optional arguments:
-  -h, --help            show this help message and exit
-"
-print(answer)
+
+
+
+
 
 
