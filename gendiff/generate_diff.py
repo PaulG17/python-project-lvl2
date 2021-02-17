@@ -1,9 +1,9 @@
 import json
 
 
-def main():
-    first_data = json.load(open('example1.json'))
-    second_data = json.load(open('example2.json'))
+def generate_diff(file_one_path, file_two_path):
+    first_data = json.load(open(file_one_path))
+    second_data = json.load(open(file_two_path))
     first_dict_keys = first_data.keys()
     second_dict_keys = second_data.keys()
     result = []
