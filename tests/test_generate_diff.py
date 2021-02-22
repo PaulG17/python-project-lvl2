@@ -1,11 +1,10 @@
 from gendiff import generate_diff
-import os
+import pathlib
 
 
 def get_fixture_path(filename):
-    result = os.path.abspath(filename)
-    return result
-
+    test_folder_path = pathlib.Path(__file__).parent.absolute()
+    return str(test_folder_path / 'fixtures' / filename)
 
 def get_fixture_data(filename):
     path = get_fixture_path(filename)
