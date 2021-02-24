@@ -1,5 +1,5 @@
 import json
-
+from operators import itemgetter
 
 def generate_diff(file_one_path, file_two_path):
     first_data = json.load(open(file_one_path))
@@ -8,14 +8,15 @@ def generate_diff(file_one_path, file_two_path):
     second_dict_keys = second_data.keys()
     result = []
     for k in second_dict_keys - first_dict_keys:  # добавлен
-        result.append(f"+ {k}: {second_data[k]}")
+        result.append(('+', k, second_data[k]))
     for k in first_dict_keys - second_dict_keys:  # удален
-        result.append(f"- {k}: {first_data[k]}")
+        result.append(('-', k, first_data[k]))
     for k in first_dict_keys & second_dict_keys:
         if first_data[k] == second_data[k]:
-            result.append(f"  {k}: {first_data[k]}")  # равен
+          result.append((' ', k, first_data[k]))   # равен
         if first_data[k] != second_data[k]:
-            result.append(f"- {k}: {first_data[k]}")  # не равен
-            result.append(f"+ {k}: {second_data[k]}")  # не равен
-    final = sorted(result)
-    print("\n".join(final))
+          result.append(('-', k, first_data[k]))  # не равен
+          result.append(('+', k, second_data[k])) # не равен
+
+    final = sorted(result, key=itemgetter(1))
+    return "\n".join(final)
