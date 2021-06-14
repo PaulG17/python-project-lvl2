@@ -16,5 +16,12 @@ def test_generate_diff():
     actual = generate_diff(
         get_fixture_path('example1.json'),
         get_fixture_path('example2.json'),
+        style  #not working
     )
     assert actual == get_fixture_data('result')
+
+
+
+
+
+
