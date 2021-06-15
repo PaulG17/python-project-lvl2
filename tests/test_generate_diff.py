@@ -1,6 +1,6 @@
 from gendiff import generate_diff
 import pathlib
-
+import pytest
 
 def get_fixture_path(filename):
     test_folder_path = pathlib.Path(__file__).parent.absolute()
@@ -11,17 +11,10 @@ def get_fixture_data(filename):
     with open(path) as file:
         return file.read()
 
-
-def test_generate_diff():
+@pytest.mark.parametrize("test_input,expected", ['', 'json']) #no format/json
+def test_actual(test_input, expected):
     actual = generate_diff(
         get_fixture_path('example1.json'),
         get_fixture_path('example2.json'),
-        style  #not working
     )
     assert actual == get_fixture_data('result')
-
-
-
-
-
-

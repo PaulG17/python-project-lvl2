@@ -8,8 +8,8 @@ def read_file(file_path):
     if file_extension in {'.yaml', '.yml'}:
         with open(file_path, 'r', encoding='utf-8') as file_obejct:
             file = yaml.safe_load(file_obejct)
-        return file    
+        return file
     elif file_extension == '.json':
-        with open(file_path, 'r', encoding='utf-8') as file_object:
+        with open('r', file_path, encoding='utf-8') as file_object:
             file = json.load(file_object)
         return file

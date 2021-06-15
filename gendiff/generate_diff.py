@@ -1,8 +1,11 @@
 from gendiff.open import read_file
+from operator import itemgetter
 
-def generate_diff(file_one_path, file_two_path):
+
+def generate_diff(file_one_path, file_two_path, format="string"):
     first_data = read_file(file_one_path)
     second_data = read_file(file_two_path)
+    third_data = format
     first_dict_keys = first_data.keys()
     second_dict_keys = second_data.keys()
     result = []
@@ -22,5 +25,4 @@ def generate_diff(file_one_path, file_two_path):
         result.append(f"{item[0]} {item[1]}: {item[2]}")
     result_string = f'{{\n{result}\n}}'
 
-    return result_string
-
+    return third_data, result_string

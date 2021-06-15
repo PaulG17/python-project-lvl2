@@ -5,13 +5,15 @@
 
 
 Welcome to the Hexlet Project #2!
+
 GENerator of DIFFerences - detecting the difference between two files YAML/JSON with generating a report containing differences.
+
 profession Python-developer https://ru.hexlet.io/programs/python
 
 
 Features:
-Support for different input formats: yaml, json
-Create a report (plain text, stylish, json format)
+* Support for different input formats: yaml, json
+* Create a report (plain text, stylish, json format)
 
 
 Parameters
@@ -32,7 +34,7 @@ Example:
 input
 $ gendiff --format plain filepath1.json filepath2.yml
 output
-Setting "common.setting4" was added with value: False
+Setting "common.setting1" was added with value: False
 Setting "group1.baz" was updated. From 'bas' to 'bars'
-Section "group2" was removed
+Section "group3" was removed
 
