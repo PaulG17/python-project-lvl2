@@ -11,10 +11,10 @@ def get_fixture_data(filename):
     with open(path) as file:
         return file.read()
 
-@pytest.mark.parametrize("test_input,expected", [('',''),('json',expected)]) #no format/json
+@pytest.mark.parametrize(("test_input", "expected"), [("", "stylish"), ("json", "json"), ("yaml", "yaml")]) #default/json,yaml/output
 def test_actual(test_input, expected):
     actual = generate_diff(
-        get_fixture_path('example1.json'),
-        get_fixture_path('example2.json'),
-    )
-    assert actual(test_input) == expected
+        get_fixture_path(f'example1.{test_input}'),
+        get_fixture_path(f'example2.{test_input}'),
+     )
+    assert actual == get_fixture_data(f'result.{expected}')

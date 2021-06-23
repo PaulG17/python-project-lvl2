@@ -4,18 +4,18 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/57f0973750563e5d34bc/test_coverage)](https://codeclimate.com/github/PaulG17/python-project-lvl2/test_coverage)
 
 
-###Welcome to the [Hexlet Project #2](https://ru.hexlet.io/categories/python/courses)!
+### Welcome to the [Hexlet Project #2](https://ru.hexlet.io/categories/python/courses)!
 
 GENerator of DIFFerences - detecting the difference between two files YAML/JSON with generating a report containing differences.
 
 
-###Features:
+### Features:
 - [X] Support for different input formats: yaml, json    
 - [X]  Create a report (plain text, stylish, json format)    
 
-###Parameters
+### Parameters
 | arguments| name | comment | 
-|:----------------:|:---------:|:----------------:|
+|:----------------:|:---------|:----------------|
 | required| gendiff -h | gendiff [-h] [-f {json,plain,stylish}] first_file second_file |
 | positional | first_file | first file to compare |  
 | positional | second_file |second file to compare |
