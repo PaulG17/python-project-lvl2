@@ -23,16 +23,21 @@ GENerator of DIFFerences - detecting the difference between two files YAML/JSON 
 | optional | -f {json,plain,stylish} | set output format (default: 'stylish') |
 | optional | --format {json,plain,stylish} | set output format (default: 'stylish') |
 
-###Example:
-```bash
-input    
-$ gendiff --format plain filepath1.json filepath2.yml
-```
-```bash
-output        
-Setting "common.setting1" was added with value: False
-Setting "group1.baz" was updated. From 'bas' to 'bars'
-Section "group3" was removed
-```
+## Installation
+[Install Git](https://github.com/git-guides/install-git)  
+[Install Poetry](https://github.com/python-poetry/poetry)  
+git clone git@github.com:PaulG17/python-project-lvl2.git Hexlet-project  
+poetry update
 
+## Examples:
+### Comparison of flat files (JSON)
+```bash
+gendiff simple_before.json simple_after.json
+```
+[![asciicast](https://asciinema.org/a/ZGSj7cidHqLADHGU8lqxje0nK.svg)](https://asciinema.org/a/ZGSj7cidHqLADHGU8lqxje0nK)
 
+### Comparison of flat files (YAML)
+```bash
+gendiff filepath1.yaml filepath2.yaml
+```
+[![asciicast](https://asciinema.org/a/2yF5N9lqdHNqYrcV1TbTWu0dV.svg)](https://asciinema.org/a/2yF5N9lqdHNqYrcV1TbTWu0dV)

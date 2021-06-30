@@ -10,6 +10,6 @@ def read_file(file_path):
             file = yaml.safe_load(file_obejct)
         return file
     elif file_extension == '.json':
-        with open('r', file_path, encoding='utf-8') as file_object:
+        with open(file_path, 'r', encoding='utf-8') as file_object:
             file = json.load(file_object)
         return file
