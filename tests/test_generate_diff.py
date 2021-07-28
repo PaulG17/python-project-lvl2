@@ -11,10 +11,23 @@ def get_fixture_data(filename):
     with open(path) as file:
         return file.read()
 
-@pytest.mark.parametrize(("test_input", "expected"), [("", "stylish"), ("json", "json"), ("yaml", "yaml")]) #default/json,yaml/output
-def test_actual(test_input, expected):
-    actual = generate_diff(
-        get_fixture_path(f'example1.{test_input}'),
-        get_fixture_path(f'example2.{test_input}'),
-     )
-    assert actual == get_fixture_data(f'result.{expected}')
+@pytest.mark.parametrize(
+    "file1,file2,correct_answer,format_name",
+    [
+        ('file1.json', 'file2.json', 'correct_stylish.txt', 'stylish'),
+        ('file1.yml', 'file2.yml', 'correct_stylish.txt', 'stylish'),
+        ('file1.json', 'file2.json', 'correct_answer.json', 'json'),
+        ('file1.yml', 'file2.yml', 'correct_answer.json', 'json')
+    ]
+)
+
+def test_diff_stylish_json(file1, file2, correct_answer, format_name):
+    path_one = get_fixture_path(file1)
+    path_two = get_fixture_path(file2)
+    path_correct_answer = get_fixture_path(correct_answer)
+    with open('{}'.format(path_correct_answer)) as a:
+        correct_answer = a.read()[:-1]
+    assert generate_diff(path_one, path_two, format_name) == correct_answer
+    if format_name == 'stylish':
+        assert generate_diff(path_one, path_two) == correct_answer
+
