@@ -1,4 +1,4 @@
-from gendiff import generate_diff
+from gendiff.generate_diff import generate_diff
 import pathlib
 import pytest
 
@@ -14,8 +14,10 @@ def get_fixture_data(filename):
 @pytest.mark.parametrize(
     "file1,file2,correct_answer,format_name",
     [
-        ('file1.json', 'file2.json', 'correct_stylish.txt', 'stylish'),
-        ('file1.yml', 'file2.yml', 'correct_stylish.txt', 'stylish'),
+        ('file1.json', 'file2.json', 'correct_stylish.stylish', 'stylish'),
+        ('file1.yml', 'file2.yml', 'correct_stylish.stylish', 'stylish'),
+        ('file1.json', 'file2.json', 'correct_plain.plain', 'plain'),
+        ('file1.yml', 'file2.yml', 'correct_plain.plain', 'plain'),
         ('file1.json', 'file2.json', 'correct_answer.json', 'json'),
         ('file1.yml', 'file2.yml', 'correct_answer.json', 'json')
     ]
