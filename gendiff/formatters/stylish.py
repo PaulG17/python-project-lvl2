@@ -30,21 +30,21 @@ def get_diff_stylish(tree, subst=0):
     return result
 
 
-def format_data(input, formatting):
-    if type(input) is dict:
+def format_data(three, formatting):
+    if type(three) is dict:
         formatting += '    '
         result = '{\n'
-        for key in input.keys():
-            value = format_data(input[key], formatting)
+        for key in three.keys():
+            value = format_data(three[key], formatting)
             result += formatting + '  ' + key + ': ' + value + '\n'
         result += formatting[:-2] + '}'
-    elif input is False:
+    elif three is False:
         result = 'false'
-    elif input is True:
+    elif three is True:
         result = 'true'
-    elif input is None:
+    elif three is None:
         result = 'null'
     else:
-        result = str(input)
+        result = str(three)
     return result
 

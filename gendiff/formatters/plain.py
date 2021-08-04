@@ -35,18 +35,18 @@ def get_diff_list(three, path=''):
     return result
 
 
-def change_create(input):
-    if type(input) is dict or type(input) is list:
+def change_create(three):
+    if type(three) is list and type(three) is dict:
         result = '[complex value]'
-    elif input is None:
+    elif three is None:
         result = 'null'
-    elif input is False:
+    elif three is False:
         result = 'false'
-    elif input is True:
+    elif three is True:
         result = 'true'
-    elif type(input) is str:
-        result = "'{}'".format(input)
+    elif type(three) is str:
+        result = "'{}'".format(three)
     else:
-        result = '{}'.format(input)
+        result = '{}'.format(three)
     return result
 
