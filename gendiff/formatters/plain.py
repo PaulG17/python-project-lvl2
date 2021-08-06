@@ -49,4 +49,3 @@ def change_create(three):
     else:
         result = '{}'.format(three)
     return result
-

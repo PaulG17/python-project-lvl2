@@ -47,4 +47,3 @@ def format_data(three, formatting):
     else:
         result = str(three)
     return result
-

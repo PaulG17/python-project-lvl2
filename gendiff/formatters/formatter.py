@@ -8,4 +8,3 @@ def format_diff(tree, format_name):
     elif format_name == 'json':
         return format_json(tree)
     raise 'Format not supported!'
-
