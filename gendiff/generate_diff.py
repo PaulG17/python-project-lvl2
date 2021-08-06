@@ -25,4 +25,4 @@ def generate_diff(file_one_path, file_two_path, format="string"):
         result.append(f"{item[0]} {item[1]}: {item[2]}")
     result_string = f'{{\n{result}\n}}'
 
-    return third_data, result_string
+    return result_string
