@@ -5,7 +5,6 @@ from operator import itemgetter
 def generate_diff(file_one_path, file_two_path, format="string"):
     first_data = read_file(file_one_path)
     second_data = read_file(file_two_path)
-    third_data = format
     first_dict_keys = first_data.keys()
     second_dict_keys = second_data.keys()
     result = []

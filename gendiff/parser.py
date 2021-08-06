@@ -7,6 +7,7 @@ def get_dict_from_file(path_file):
     file_extension = Path(path_file).suffix
     return parser(path_file, file_extension)
 
+
 def parser(file_data, file_type):
     loading = {
         '.json': json.loads,
