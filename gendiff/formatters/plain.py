@@ -1,10 +1,10 @@
 def plain(three):
     three.sort(key=lambda x: x['name'])
-    result = get_diff_list(three)
+    result = get_diff_plain_list(three)
     return '\n'.join(result)
 
 
-def get_diff_list(three, path=''):
+def get_diff_plain_list(three, path=''):
     result = []
     for node in three:
         if node['status'] == 'nested':
@@ -35,7 +35,7 @@ def get_diff_list(three, path=''):
     return result
 
 
-def change_create(three):
+def create_change(three):
     if type(three) is list and type(three) is dict:
         result = '[complex value]'
     elif three is None:

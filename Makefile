@@ -5,7 +5,7 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run coverage run --source=gendiff -m pytest tests
+	poetry run coverage run --source=gendiff -m pytest tests -vv
 
 cc-coverage:
 	poetry run coverage xml
