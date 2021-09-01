@@ -1,51 +1,49 @@
-def plain(three):
-    three.sort(key=lambda x: x['name'])
-    result = get_diff_plain_list(three)
-    return '\n'.join(result)
+import gendiff.generate_diff
+import gendiff.formatters.sort_keys
 
 
-def get_diff_plain_list(three, path=''):
-    result = []
-    for node in three:
-        if node['status'] == 'nested':
-            change_path = path + node['name'] + '.'
-            difference = get_diff_list(node['children'], change_path)
-            result.extend(difference)
-        if node['status'] == 'added':
-            change_path = path + node['name']
-            change = change_create(node['data'])
-            difference = (
-                f"Property '{change_path}' was added "
-                f"with value: {change}"
-            )
-            result.append(difference)
-        if node['status'] == 'deleted':
-            change_path = path + node['name']
-            difference = "Property '{}' was removed".format(change_path)
-            result.append(difference)
-        if node['status'] == 'changed':
-            change_path = path + node['name']
-            change_before = change_create(node['data before'])
-            change_after = change_create(node['data after'])
-            difference = (
-                f"Property '{change_path}' was updated. "
-                f"From {change_before} to {change_after}"
-            )
-            result.append(difference)
+COMPLEX = '[complex value]'
+ADDED = "Property {0} was added with value: {1}"
+REMOVED = "Property {0} was removed"
+UPDATED = "Property {0} was updated. From {1} to {2}"
+
+
+def format_plain(data):
+    sorted = sorted_keys(data)
+    result = string(sorted)
     return result
 
+def string(tree, prefix=""):
+    return '\n'.join(filter(lambda x: x != '', map(lambda x: format_node(x, prefix),tree)))
 
-def create_change(three):
-    if type(three) is list and type(three) is dict:
-        result = '[complex value]'
-    elif three is None:
-        result = 'null'
-    elif three is False:
-        result = 'false'
-    elif three is True:
-        result = 'true'
-    elif type(three) is str:
-        result = "'{}'".format(three)
+def format_node(node, prefix=""):
+    if node['status'] == nested:
+        prefix += f'{node["key"]}.'
+        return string(node['value'], prefix)
+    return get_line(node, prefix)
+
+def get_line(data, prefix):
+    key = f'\'{prefix}{data["key"]}\''
+
+    if data["status"] == ADDED:
+        return ADDED.format(key, format(data["value"]))
+    elif data["status"] == REMOVED:
+        return REMOVED.format(key)
+    elif data["status"] == UPDATED:
+        return UPDATED.format(key,format(data["value"]["old"]),format(data["value"]["new"]))
     else:
-        result = '{}'.format(three)
-    return result
+        return ''
+
+def format(data):
+    if isinstance(data, list) or isinstance(data, dict):
+        return COMPLEX
+    elif isinstance(data, str):
+        return f'\'{data}\''
+    else:
+        if data is True:
+            return 'true'
+        elif data is False:
+            return 'false'
+        elif data is None:
+            return 'null'
+        return data

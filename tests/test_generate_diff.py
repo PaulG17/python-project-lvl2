@@ -29,7 +29,7 @@ def test_diff_stylish_json(file1, file2, correct_answer, format_name):
     path_correct_answer = get_fixture_path(correct_answer)
     with open('{}'.format(path_correct_answer)) as file:
         correct_answer = file.read()
-    assert generate_diff(path_one, path_two, format_name) == correct_answer
+    assert generate_diff(path_one, path_two) == correct_answer
     if format_name == 'stylish':
         assert generate_diff(path_one, path_two) == correct_answer    
     

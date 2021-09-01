@@ -1,5 +1,5 @@
 import json
-from gendiff.formatters.sort_diff_keys import sort_keys
+import gendiff.formatters.sort_keys
 
 
 def format_json(diff):
