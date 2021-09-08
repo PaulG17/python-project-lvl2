@@ -18,8 +18,8 @@ def get_fixture_data(filename):
         ('file1.yaml', 'file2.yaml', 'correct.stylish', 'stylish'),
         ('file1.json', 'file2.json', 'correct.plain', 'plain'),
         ('file1.yaml', 'file2.yaml', 'correct.plain', 'plain'),
-        ('file1.json', 'file2.json', 'correct_answer.json', 'json'),
-        ('file1.yaml', 'file2.yaml', 'correct_answer.json', 'json')
+        ('file1.json', 'file2.json', 'correct.json', 'json'),
+        ('file1.yaml', 'file2.yaml', 'correct.json', 'json')
     ]
 )
 
@@ -27,7 +27,7 @@ def test_diff_stylish_json(file1, file2, correct_answer, format_name):
     path_one = get_fixture_path(file1)
     path_two = get_fixture_path(file2)
     path_correct_answer = get_fixture_path(correct_answer)
-    with open('{}'.format(path_correct_answer)) as file:
+    with open(path_correct_answer) as file:
         correct_answer = file.read()
     assert generate_diff(path_one, path_two) == correct_answer
     if format_name == 'stylish':

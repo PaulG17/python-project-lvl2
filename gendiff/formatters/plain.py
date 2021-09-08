@@ -14,7 +14,10 @@ def format_plain(data):
     return result
 
 def string(tree, prefix=""):
-    return '\n'.join(filter(lambda x: x != '', map(lambda x: format_node(x, prefix),tree)))
+    return '\n'.join(filter(
+        lambda x: x != '',
+        map(lambda x: format_node(x, prefix),tree)
+    ))
 
 def format_node(node, prefix=""):
     if node['status'] == nested:
