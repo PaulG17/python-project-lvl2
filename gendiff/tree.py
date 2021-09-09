@@ -24,10 +24,11 @@ def get_key_diff(first_data, second_data):
                 'value': first_keys[key],
                 'status': 'equal',
             })
-        elif isinstance(first_keys[key], dict) and isinstance(second_keys[key], dict):
+        elif isinstance(first_keys[key], dict) and isinstance(
+                second_keys[key], dict):
             diff.append({
                 'key': key,
-                'value': generate_diff(first_keys[key], second_keys[key]),
+                'value': get_key_diff(first_keys[key], second_keys[key]),
                 'status': 'nested',
             })
         else:

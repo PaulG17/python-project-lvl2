@@ -1,5 +1,4 @@
-import gendiff.generate_diff
-import gendiff.formatters.sort_keys
+from gendiff.formatters.sort_keys import sorted_keys
 
 
 COMPLEX = '[complex value]'
@@ -13,17 +12,20 @@ def format_plain(data):
     result = string(sorted)
     return result
 
+
 def string(tree, prefix=""):
     return '\n'.join(filter(
         lambda x: x != '',
-        map(lambda x: format_node(x, prefix),tree)
+        map(lambda x: format_node(x, prefix), tree)
     ))
 
+
 def format_node(node, prefix=""):
-    if node['status'] == nested:
+    if node['status'] == "nested":
         prefix += f'{node["key"]}.'
         return string(node['value'], prefix)
     return get_line(node, prefix)
+
 
 def get_line(data, prefix):
     key = f'\'{prefix}{data["key"]}\''
@@ -33,9 +35,11 @@ def get_line(data, prefix):
     elif data["status"] == REMOVED:
         return REMOVED.format(key)
     elif data["status"] == UPDATED:
-        return UPDATED.format(key,format(data["value"]["old"]),format(data["value"]["new"]))
+        return UPDATED.format(key, format(data["value"]["old"]),
+                              format(data["value"]["new"]))
     else:
         return ''
+
 
 def format(data):
     if isinstance(data, list) or isinstance(data, dict):

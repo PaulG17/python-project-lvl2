@@ -1,6 +1,6 @@
 import json
-import gendiff.formatters.sort_keys
+from gendiff.formatters.sort_keys import sorted_keys
 
 
 def format_json(diff):
-    return json.dumps({'data': sort_keys(diff)}, indent=2)
+    return json.dumps({'data': sorted_keys(diff)}, indent=2)

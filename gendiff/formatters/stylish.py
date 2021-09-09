@@ -1,8 +1,4 @@
-import gendiff.generate_diff
-from gendiff.formatters.sort_keys
-
-
-def stylish(tree):
+def format_stylish(tree):
     return get_diff_stylish(tree)
 
 
