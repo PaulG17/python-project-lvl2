@@ -7,25 +7,25 @@ def get_diff_stylish(tree, subst=0):
     formatting = '  '
     for i in range(subst):
         formatting += '    '
-    tree.sort(key=lambda x: x['name'])
+    tree.sort(key=lambda x: x['key'])
     for node in tree:
         if node['status'] == 'changed':
-            data = get_diff_stylish(node['data before'], formatting)
-            result += f"{formatting}- {node['name']}: {data}\n"
-            data = format_data(node['data after'], formatting)
-            result += f"{formatting}+ {node['name']}: {data}\n"
+            data = format_data(node['value']['old'], formatting)
+            result += f"{formatting}- {node['key']}: {data}\n"
+            data = format_data(node['value']['new'], formatting)
+            result += f"{formatting}+ {node['key']}: {data}\n"
         if node['status'] == 'added':
-            data = format_data(node['data'], formatting)
-            result += f"{formatting}+ {node['name']}: {data}\n"
+            data = format_data(node['value'], formatting)
+            result += f"{formatting}+ {node['key']}: {data}\n"
         if node['status'] == 'deleted':
             data = format_data(node['data'], formatting)
-            result += f"{formatting}- {node['name']}: {data}\n"
+            result += f"{formatting}- {node['key']}: {data}\n"
         if node['status'] == 'not changed':
             data = format_data(node['data'], formatting)
-            result += f"{formatting}  {node['name']}: {data}\n"
+            result += f"{formatting}  {node['key']}: {data}\n"
         if node['status'] == 'nested':
-            data = get_diff_stylish(node['children'], subst + 1)
-            result += f"{formatting}  {node['name']}: {data}\n"
+            data = get_diff_stylish(node['value'], subst + 1)
+            result += f"{formatting}  {node['key']}: {data}\n"
     result += formatting[:-2] + '}'
     return result
 

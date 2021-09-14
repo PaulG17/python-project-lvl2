@@ -1,6 +1,6 @@
 from gendiff.formatters.format_diff import format_diff
 from gendiff.open import read_file
-from tree import get_key_diff
+from gendiff.tree import get_key_diff
 
 
 def generate_diff(file_one_path, file_two_path, format='stylish'):

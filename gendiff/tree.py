@@ -9,34 +9,34 @@ def get_key_diff(first_data, second_data):
         if key in deleted_keys:
             diff.append({
                 'key': key,
-                'value': first_keys[key],
+                'value': first_data[key],
                 'status': 'removed',
             })
         elif key in added_keys:
             diff.append({
                 'key': key,
-                'value': second_keys[key],
+                'value': second_data[key],
                 'status': 'added',
             })
-        elif first_keys[key] == second_keys[key]:
+        elif first_data[key] == second_data[key]:
             diff.append({
                 'key': key,
-                'value': first_keys[key],
+                'value': first_data[key],
                 'status': 'equal',
             })
-        elif isinstance(first_keys[key], dict) and isinstance(
-                second_keys[key], dict):
+        elif isinstance(first_data[key], dict) and isinstance(
+                second_data[key], dict):
             diff.append({
                 'key': key,
-                'value': get_key_diff(first_keys[key], second_keys[key]),
+                'value': get_key_diff(first_data[key], second_data[key]),
                 'status': 'nested',
             })
         else:
             diff.append({
                 'key': key,
                 'value': {
-                    'old': first_keys[key],
-                    'new': second_keys[key],
+                    'old': first_data[key],
+                    'new': second_data[key],
                 },
                 'status': 'changed',
             })
