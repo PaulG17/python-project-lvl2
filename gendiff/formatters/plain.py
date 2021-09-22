@@ -28,7 +28,7 @@ def format_node(node, prefix=""):
 
 
 def get_line(data, prefix):
-    key = f'\'{prefix}{data["key"]}\''
+    key = f'\'{prefix}{data["value"]}\''
 
     if data["status"] == ADDED:
         return ADDED.format(key, format(data["value"]))

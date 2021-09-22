@@ -17,11 +17,11 @@ def get_diff_stylish(tree, subst=0):
         if node['status'] == 'added':
             data = format_data(node['value'], formatting)
             result += f"{formatting}+ {node['key']}: {data}\n"
-        if node['status'] == 'deleted':
-            data = format_data(node['data'], formatting)
+        if node['status'] == 'removed':
+            data = format_data(node['value'], formatting)
             result += f"{formatting}- {node['key']}: {data}\n"
-        if node['status'] == 'not changed':
-            data = format_data(node['data'], formatting)
+        if node['status'] == 'equal':
+            data = format_data(node['value'], formatting)
             result += f"{formatting}  {node['key']}: {data}\n"
         if node['status'] == 'nested':
             data = get_diff_stylish(node['value'], subst + 1)
