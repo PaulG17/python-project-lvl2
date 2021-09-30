@@ -14,6 +14,8 @@ formats = {
 def format_diff(tree, style=default_style):
     if style in formats:
         formatter = formats.get(style)
+        print(formatter)
+        print(style)
     else:
         raise RuntimeError(f'{style} not supported!')
     return formatter(tree)
